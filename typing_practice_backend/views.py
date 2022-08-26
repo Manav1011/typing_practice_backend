@@ -7,6 +7,6 @@ gen = DocumentGenerator()
 @api_view(['GET'])
 def ParaGraphGenerator(request):
     raw_paragraph=gen.paragraph(20,25)
-    whitelist = set('abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    whitelist = set('abcdefghijklmnopqrstuvwxyz .ABCDEFGHIJKLMNOPQRSTUVWXYZ')
     idiol_para=''.join(filter(whitelist.__contains__, raw_paragraph))
-    return Response(idiol_para)    
+    return Response(idiol_para.capitalize())
