@@ -21,6 +21,10 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    re_path(r'^$',views.ParaGraphGenerator,name='MainView')
+    re_path(r'^Easy/$',views.ParaGraphGeneratorEasy,name='MainViewEasy'),
+    re_path(r'^Medium/$',views.ParaGraphGeneratorMedium,name='MainViewNormal'),
+    re_path(r'^Hard/$',views.ParaGraphGeneratorHard,name='MainViewHard'),
+    re_path(r'^Extreme/$',views.ParaGraphGeneratorExtreme,name='MainViewExtreme'),
+    
     
 ]
