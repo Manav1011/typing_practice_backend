@@ -37,7 +37,7 @@ def ParaGraphGeneratorMedium(request):
 @api_view(['GET'])
 def ParaGraphGeneratorHard(request):
     index=random.randint(0, len(ParaGraphs))
-    return Response(json.dumps(ParaGraphs[str(index)]))
+    return Response(ParaGraphs[str(index)])
 
 @api_view(['GET'])
 def ParaGraphGeneratorExtreme(request):
