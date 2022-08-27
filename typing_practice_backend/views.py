@@ -21,17 +21,21 @@ CommonWords=(json.loads(Common.read()))
 @api_view(['GET'])
 def ParaGraphGeneratorEasy(request):
     SendableWords=''
+    index=random.randint(0,len(MostCommonWords)-302)
+    print(index)
+    print(len(MostCommonWords)-300)
     for i in range(0,300):
-        index=random.randint(0,len(MostCommonWords))
-        SendableWords+=MostCommonWords[str(index)][0]+' '
+        SendableWords+=MostCommonWords[str(index+i)][0]+' '
     return Response(SendableWords)
 
 @api_view(['GET'])
 def ParaGraphGeneratorMedium(request):
     SendableWords=''
+    index=random.randint(0,len(CommonWords)-400)
+    print(index)
+    print(len(CommonWords)-400)    
     for i in range(0,300):
-        index=random.randint(0,len(CommonWords))
-        SendableWords+=CommonWords[str(index)][0]+' '
+        SendableWords+=CommonWords[str(index + i)][0]+' '
     return Response(SendableWords)
 
 @api_view(['GET'])
