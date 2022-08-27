@@ -11,24 +11,33 @@ gen = DocumentGenerator()
 file=open('para.json','r')
 ParaGraphs= json.loads(file.read())
 
+mostCommon=open('most_common.json','r')
+MostCommonWords=(json.loads(mostCommon.read()))
+
+
+Common=open('words.json','r')
+CommonWords=(json.loads(Common.read()))
+
 @api_view(['GET'])
-def ParaGraphGeneratorEasy(request):    
-    index=random.randint(0, len(ParaGraphs))
-    return Response(ParaGraphs[str(index)])
+def ParaGraphGeneratorEasy(request):
+    SendableWords=''
+    for i in range(0,300):
+        index=random.randint(0,len(MostCommonWords))
+        SendableWords+=MostCommonWords[str(index)][0]+' '
+    return Response(SendableWords)
 
 @api_view(['GET'])
 def ParaGraphGeneratorMedium(request):
-    raw_paragraph=gen.paragraph(20,25)
-    whitelist = set('abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ')
-    idiol_para=''.join(filter(whitelist.__contains__, raw_paragraph))
-    return Response(idiol_para)
+    SendableWords=''
+    for i in range(0,300):
+        index=random.randint(0,len(CommonWords))
+        SendableWords+=CommonWords[str(index)][0]+' '
+    return Response(SendableWords)
 
 @api_view(['GET'])
 def ParaGraphGeneratorHard(request):
-    raw_paragraph=gen.paragraph(20,25)
-    whitelist = set('abcdefghijklmnopqrstuvwxyz 1234567890.;ABCDEFGHIJKLMNOPQRSTUVWXYZ')
-    idiol_para=''.join(filter(whitelist.__contains__, raw_paragraph))
-    return Response(idiol_para)
+    index=random.randint(0, len(ParaGraphs))
+    return Response(json.dumps(ParaGraphs[str(index)]))
 
 @api_view(['GET'])
 def ParaGraphGeneratorExtreme(request):
